@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #260349;
+}
+
+body {
+  @apply bg-bg-page text-text-primary min-h-dvh;
+}
+
+#root {
+  @apply min-h-dvh flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8;
+}
+
+.pattern-layer {
+  z-index: 0;
+}
+
+.pattern-shape {
+  position: absolute;
+  display: block;
+  border-radius: 9999px;
+  transform-origin: center;
+  will-change: transform, opacity;
+  mix-blend-mode: multiply;
+  filter: blur(0.2px);
+}
+
+.pattern-line {
+  border-radius: 12px;
+}
+
+.pattern-bar {
+  border-radius: 10px;
+  width: 120px !important;
+  height: 12px !important;
+}
+
+.pattern-blob {
+  border-radius: 40%;
+}
+
+.pattern-ring {
+  box-shadow: 0 0 0 12px currentColor inset;
+  background: transparent !important;
+}
+
+.pattern-xline::before,
+.pattern-xline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  transform-origin: center;
+}
+
+.pattern-xline::before {
+  transform: rotate(45deg);
+}
+
+.pattern-xline::after {
+  transform: rotate(-45deg);
+}
+
+.pattern-dot {
+  border-radius: 9999px;
+}
+
+.pattern-pop {
+  animation: pattern-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.pattern-pulse {
+  animation: pattern-pulse 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pattern-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+@keyframes pattern-pulse {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+    box-shadow: 0 0 0 0 rgba(255, 184, 156, 0.15);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 0 18px rgba(255, 184, 156, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 0 32px rgba(255, 184, 156, 0);
+  }
+}
+
+.card {
+  @apply relative z-10 bg-bg-card shadow-soft w-full max-w-[600px] h-[800px] p-6 sm:p-7 flex flex-col gap-5 sm:gap-6 rounded-[18px] justify-between;
+}
+
+.display-panel {
+  @apply bg-display-bg rounded-[18px] w-full min-h-[88px] h-[104px] px-5 py-4 flex items-end justify-end font-semibold text-text-primary shadow-inner overflow-hidden text-ellipsis whitespace-nowrap;
+  font-size: clamp(32px, 6vw, 56px);
+  line-height: 1.05;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.key-grid {
+  @apply w-full grid grid-cols-4 gap-3 sm:gap-4;
+  grid-auto-rows: 83px;
+}
+
+.calc-btn {
+  @apply w-full h-full min-h-[44px] rounded-[18px] text-[20px] font-semibold text-text-primary shadow-btn transition-transform duration-150 ease-out select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-text-primary focus-visible:ring-offset-bg-card;
+}
+
+.calc-btn:hover {
+  @apply -translate-y-0.5;
+}
+
+.calc-btn:active {
+  @apply scale-95;
+  transition-timing-function: theme("transitionTimingFunction.springy");
+}
+
+.calc-btn.number {
+  @apply bg-btn-number;
+}
+
+.calc-btn.number:active {
+  background: #c8c3f0;
+}
+
+.calc-btn.action {
+  @apply bg-btn-action;
+}
+
+.calc-btn.action:active {
+  background: #8be7e3;
+}
+
+.calc-btn.operator {
+  @apply bg-btn-operator;
+}
+
+.calc-btn.operator:active {
+  background: #ffc7b3;
+}
+
+.calc-btn.active {
+  @apply ring-2 ring-text-primary ring-offset-2 ring-offset-bg-card;
+}
+
+.footer {
+  @apply flex flex-wrap items-start justify-between text-sm text-black gap-2 text-center sm:text-left;
+}
+
